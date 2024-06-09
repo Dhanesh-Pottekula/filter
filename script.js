@@ -31,9 +31,6 @@ const fetchImages = async (page) => {
 
     const img = document.createElement("img");
     img.dataset.src = hit.webformatURL;
-
-    // img.alt = hit.tags;
-
     imgContainer.appendChild(img);
     gallery.appendChild(imgContainer);
   });
@@ -75,10 +72,14 @@ const handleScroll = () => {
 
 const handleKeyDown = (e) => {
   if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    const allImages = Array.from(gallery.getElementsByClassName("image-container"));
+    const allImages = Array.from(
+      gallery.getElementsByClassName("image-container")
+    );
 
     // Remove border from previously selected image
-    const previouslySelectedImage = document.querySelector(".image-container.selected");
+    const previouslySelectedImage = document.querySelector(
+      ".image-container.selected"
+    );
     if (previouslySelectedImage) {
       previouslySelectedImage.classList.remove("selected");
     }
@@ -111,50 +112,53 @@ const handleKeyDown = (e) => {
         break;
     }
 
-    if (selectedIndex !== undefined && selectedIndex < allImages.length && selectedIndex >= 0) {
+    if (
+      selectedIndex !== undefined &&
+      selectedIndex < allImages.length &&
+      selectedIndex >= 0
+    ) {
       allImages[selectedIndex].classList.add("selected");
       const selectedImage = allImages[selectedIndex];
-      // Ensure the selected image scrolls into view only if it's not fully visible
-  
+
       if (
         selectedImage.getBoundingClientRect().top < 0 ||
         selectedImage.getBoundingClientRect().bottom > window.innerHeight
       ) {
-        // Calculate the desired scroll position
-        const desiredScrollPosition = selectedImage.offsetTop - (window.innerHeight - selectedImage.clientHeight) / 2;
-        console.log(desiredScrollPosition)
-        // Scroll to the desired position
+        const desiredScrollPosition =
+          selectedImage.offsetTop -
+          (window.innerHeight - selectedImage.clientHeight) / 2;
+        console.log(desiredScrollPosition);
+
         window.scrollTo({
           top: desiredScrollPosition,
-          behavior: "smooth"
         });
       }
-      
     }
 
     // Debugging information
   }
 };
 
-
-
 // Function to handle click on an image
 const handleClick = (e) => {
   const clickedImage = e.target.closest(".image-container");
   if (clickedImage) {
     // Remove border from previously selected image
-    const previouslySelectedImage = document.querySelector(".image-container.selected");
+    const previouslySelectedImage = document.querySelector(
+      ".image-container.selected"
+    );
     if (previouslySelectedImage) {
       previouslySelectedImage.classList.remove("selected");
     }
     // Add border to the clicked image
     clickedImage.classList.add("selected");
-    const allImages = Array.from(gallery.getElementsByClassName("image-container"));
+    const allImages = Array.from(
+      gallery.getElementsByClassName("image-container")
+    );
     selectedIndex = allImages.indexOf(clickedImage);
     clickedImage.querySelector("img").focus();
   }
 };
-
 
 // Add click event listener to the gallery
 gallery.addEventListener("click", handleClick);
