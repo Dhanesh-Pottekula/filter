@@ -1,0 +1,109 @@
+/* General styles for the body */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Styling for the controls panel */
+.controls {
+    position: fixed;
+    bottom: 10px;
+    left: 550px;
+    z-index: 1000;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#columnsRange {
+    cursor: pointer;
+}
+
+#columnsValue {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Styling for the gallery */
+.gallery {
+    display: grid;
+    gap: 20px;
+    padding: 20px 10px 10px;
+    transition: grid-template-columns 0.3s;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Styling for the image containers */
+.gallery .image-container {
+    width: 100%;
+    padding-bottom: 100%; /* Aspect ratio of 1:1 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery .image-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the images */
+.gallery .image-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .gallery {
+        gap: 15px;
+        padding: 80px 10px 10px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        gap: 10px;
+        padding: 60px 5px 5px;
+    }
+}
+
+.image-container.selected {
+    border: 2px solid black;
+}
+
+.gallery-container {
+    max-height: 500px; /* Adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+  }
+
