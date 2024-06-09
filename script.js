@@ -14,7 +14,7 @@ columnsValue.textContent = columns;
 gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 
 columnsRange.addEventListener("input", (e) => {
-  columns = e.target.value;
+  columns = Number(e.target.value);
   columnsValue.textContent = columns;
   gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 });
@@ -122,7 +122,7 @@ const handleKeyDown = (e) => {
       ) {
         // Calculate the desired scroll position
         const desiredScrollPosition = selectedImage.offsetTop - (window.innerHeight - selectedImage.clientHeight) / 2;
-        
+        console.log(desiredScrollPosition)
         // Scroll to the desired position
         window.scrollTo({
           top: desiredScrollPosition,
